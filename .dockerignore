@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Development
+.env
+.env.local
+.env.*.local
+.vscode
+.idea
+
+# Build artifacts
+dist
+node_modules
+
+# Tests
+coverage
+.nyc_output
+test
+tests
+
+# Misc
+*.tgz
+.DS_Store
+Thumbs.db
