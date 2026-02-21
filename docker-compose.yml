@@ -1,6 +1,9 @@
 services:
   shm-remnawave-agent:
-    image: bkeenke/shm-remnawave-agent:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args: REMNAWAVE_VERSION=2.6.1
     container_name: shm-remnawave-agent
     restart: unless-stopped
     ports:
