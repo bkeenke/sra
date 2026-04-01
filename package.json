@@ -1,6 +1,6 @@
 {
-  "name": "@bkeenke/shm-agent",
-  "version": "2.6.1",
+  "name": "@bkeenke/sra",
+  "version": "2.7.2",
   "description": "Lightweight SHM to Remnawave API agent",
   "private": true,
   "type": "commonjs",
@@ -21,7 +21,7 @@
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.1.13",
     "@nestjs/platform-express": "^11.1.13",
-    "@remnawave/backend-contract": "^2.6.1",
+    "@remnawave/backend-contract": "^2.7.2",
     "axios": "^1.9.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",

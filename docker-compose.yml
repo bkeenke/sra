@@ -1,18 +1,10 @@
 services:
-  shm-remnawave-agent:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-      args: 
-        REMNAWAVE_VERSION: "2.6.1"
-    container_name: shm-remnawave-agent
+  sra:
+    image: bkeenke/sra:latest
+    container_name: sra
     restart: unless-stopped
     ports:
       - "127.0.0.1:3100:3100"
-    environment:
-      - REMNAWAVE_VERSION=2.6.1
-      - NODE_ENV=production
-      - PORT=3100
     deploy:
       resources:
         limits:

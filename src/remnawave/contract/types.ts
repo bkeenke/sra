@@ -10,7 +10,7 @@ export enum RESET_PERIODS {
     DAY = 'DAY',
     WEEK = 'WEEK',
     MONTH = 'MONTH',
-    YEAR = 'YEAR',
+    MONTH_ROLLING = 'MONTH_ROLLING',
 }
 
 export enum TRAFFIC_LIMIT_STRATEGY {
@@ -18,22 +18,26 @@ export enum TRAFFIC_LIMIT_STRATEGY {
     DAY = 'DAY',
     WEEK = 'WEEK',
     MONTH = 'MONTH',
-    YEAR = 'YEAR',
+    MONTH_ROLLING = 'MONTH_ROLLING',
+}
+
+export interface UserTraffic {
+    usedTrafficBytes: number;
+    lifetimeUsedTrafficBytes: number;
+    onlineAt: Date | string | null;
+    firstConnectedAt: Date | string | null;
+    lastConnectedNodeUuid: string | null;
 }
 
 export interface ExtendedUser {
     uuid: string;
+    id: number;
     shortUuid: string;
     username: string;
     status: USERS_STATUS;
-    usedTrafficBytes: bigint | string | number;
-    lifetimeUsedTrafficBytes: bigint | string | number;
-    trafficLimitBytes: bigint | string | number;
+    trafficLimitBytes: number;
     trafficLimitStrategy: string;
-    subLastUserAgent: string | null;
-    subLastOpenedAt: Date | string | null;
     expireAt: Date | string;
-    onlineAt: Date | string | null;
     subRevokedAt: Date | string | null;
     createdAt: Date | string;
     updatedAt: Date | string;
@@ -41,30 +45,16 @@ export interface ExtendedUser {
     trojanPassword: string;
     vlessUuid: string;
     ssPassword: string;
-    subscriptionUuid: string;
-    subscriptionUrl?: string;
+    lastTriggeredThreshold: number;
+    subscriptionUrl: string;
     description: string | null;
     email: string | null;
-    telegramId: bigint | string | number | null;
+    telegramId: number | null;
     hwidDeviceLimit: number | null;
     tag: string | null;
-    externalSquadUuid?: string | null;
-    activeInternalSquads?: Array<{ uuid: string; tag: string }>;
-    enabledInbounds?: Array<{
-        uuid: string;
-        tag: string;
-        type: string;
-    }>;
-    activeUserInbounds?: Array<{
-        uuid: string;
-        tag: string;
-        type: string;
-    }>;
-    lastConnectedNode?: {
-        uuid: string;
-        name: string;
-    } | null;
-    billingStartDate?: Date | string | null;
+    externalSquadUuid: string | null;
+    activeInternalSquads: Array<{ uuid: string; name: string }>;
+    userTraffic: UserTraffic;
 }
 
 export interface ApiResponse<T> {

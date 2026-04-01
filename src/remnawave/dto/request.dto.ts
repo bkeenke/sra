@@ -84,6 +84,10 @@ class UserIdentifierDto {
     @IsOptional()
     @IsString()
     shortUuid?: string;
+
+    @IsOptional()
+    @IsNumber()
+    searchTelegramId?: number;
 }
 
 export class CreateUserDto {
@@ -261,4 +265,7 @@ export class GetUserRequestDto {
     @IsOptional()
     @IsString()
     shortUuid?: string;
+    @IsOptional()
+    @IsNumber()
+    searchTelegramId?: number;
 }

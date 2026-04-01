@@ -295,7 +295,7 @@ export class RemnawaveService {
 
     async getUser(
         credentials: ApiCredentials,
-        request: { uuid?: string; username?: string; shortUuid?: string },
+        request: { uuid?: string; username?: string; shortUuid?: string; searchTelegramId?: number },
     ): Promise<ExtendedUser> {
         if (request.uuid) {
             return this.apiService.getUserByUuid(credentials.apiHost, credentials.token, request.uuid);
@@ -306,8 +306,11 @@ export class RemnawaveService {
         if (request.shortUuid) {
             return this.apiService.getUserByShortUuid(credentials.apiHost, credentials.token, request.shortUuid);
         }
+        if (request.searchTelegramId) {
+            return this.apiService.getUserByTelegramId(credentials.apiHost, credentials.token, request.searchTelegramId);
+        }
 
-        throw new HttpException('UUID, username, or shortUuid is required', HttpStatus.BAD_REQUEST);
+        throw new HttpException('UUID, username, shortUuid, or searchTelegramId is required', HttpStatus.BAD_REQUEST);
     }
 
     private calculateExpireAt(request: RequestWithExpire): string {

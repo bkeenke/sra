@@ -8,6 +8,7 @@ import {
     GetUserByUuidCommand,
     GetUserByUsernameCommand,
     GetUserByShortUuidCommand,
+    GetUserByTelegramIdCommand,
     UpdateUserCommand,
     DeleteUserCommand,
     EnableUserCommand,
@@ -143,6 +144,16 @@ export class RemnawaveApiService {
         return response.response;
     }
 
+    async getUserByTelegramId(apiHost: string, token: string, telegramId: number): Promise<ExtendedUser> {
+        const response = await this.request<ApiResponse<ExtendedUser>>(
+            apiHost,
+            token,
+            GetUserByTelegramIdCommand.endpointDetails.REQUEST_METHOD,
+            REST_API.USERS.GET_BY.TELEGRAM_ID(String(telegramId)),
+        );
+        return response.response;
+    }
+
     async updateUser(
         apiHost: string,
         token: string,
@@ -238,9 +249,10 @@ export class RemnawaveApiService {
     async getInternalSquads(
         apiHost: string,
         token: string,
-    ): Promise<Array<{ uuid: string; tag: string }>> {
+    ): Promise<Array<{ uuid: string; name: string }>> {
         const response = await this.request<ApiResponse<{
-            internalSquads: Array<{ uuid: string; tag: string }>;
+            total: number;
+            internalSquads: Array<{ uuid: string; name: string }>;
         }>>(apiHost, token, GetInternalSquadsCommand.endpointDetails.REQUEST_METHOD, REST_API.INTERNAL_SQUADS.GET);
 
         return response.response.internalSquads || [];

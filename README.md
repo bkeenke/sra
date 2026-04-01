@@ -13,12 +13,13 @@
 ### Docker Compose
 
 ```bash
-git clone https://github.com/bkeenke/shm-remnawave-agent
-cd shm-remnawave-agent
+git clone https://github.com/bkeenke/sra
+cd sra
 
-# Сборка с нужной версией @remnawave/backend-contract
-docker build --build-arg REMNAWAVE_VERSION=2.6.1 -t shm-remnawave-agent .
+```
+Указать версию внутри
 
+```shell
 docker compose up -d
 ```
 
@@ -41,7 +42,7 @@ Health check endpoint.
 {
   "status": "ok",
   "timestamp": "2026-01-01T21:00:00.000Z",
-  "service": "shm-remnawave-agent"
+  "service": "sra"
 }
 ```
 
@@ -53,7 +54,7 @@ Health check endpoint.
 {
   "success": true,
   "response": {
-    "service": "shm-remnawave-agent",
+    "service": "sra",
     "queue": {
       "isProcessing": false,
       "queueLength": 0
@@ -71,7 +72,7 @@ Health check endpoint.
   "username": "user123",
   "expireAt": "2026-12-31T23:59:59.000Z",
   "trafficLimitBytes": 268435456000,
-  "trafficLimitStrategy": "MONTH",
+  "trafficLimitStrategy": "MONTH_ROLLING",
   "hwidDeviceLimit": 2,
   "tag": "SHM",
   "activeInternalSquads": ["uuid1", "uuid2"],

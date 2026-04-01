@@ -105,7 +105,7 @@ export class RemnawaveController {
         return {
             success: true,
             response: {
-                service: 'shm-remnawave-agent',
+                service: 'sra',
                 queue: this.remnawaveService.getQueueStatus(),
             },
         };
